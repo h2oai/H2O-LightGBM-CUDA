@@ -1053,6 +1053,7 @@ void GPUTreeLearner::FindBestSplits() {
 
   SerialTreeLearner::FindBestSplits();
 
+#if GPU_DEBUG >= 3
   for (int feature_index = 0; feature_index < num_features_; ++feature_index) {
     if (!is_feature_used_[feature_index]) continue;
     if (parent_leaf_histogram_array_ != nullptr
@@ -1067,6 +1068,7 @@ void GPUTreeLearner::FindBestSplits() {
     printf("Feature %d larger leaf:\n", feature_index);
   //  PrintHistograms(larger_leaf_histogram_array_[feature_index].RawData() - 1, bin_size);
   }
+#endif
 }
 
 void GPUTreeLearner::Split(Tree* tree, int best_Leaf, int* left_leaf, int* right_leaf) {
